@@ -116,37 +116,39 @@ export const App = () => {
 
   return (
     <div className='App'>
-      <h1 className='header'>
-        {gameWon || gameOver
-          ? message
-          : `Hallo ${firstname ? firstname : "..."}`}
-      </h1>
-      <h2 className='subheader'>{message ? message : "..."}</h2>
-      <input
-        required
-        autoFocus
-        placeholder='Wie heißt du?'
-        type='text'
-        onChange={handleFirstname}
-      />
-      <button className='start-btn' onClick={() => handleNewGame()}>
-        Start
-      </button>
-      <div>
-        <button className='score-btn'>Versuche: {score}</button>
-        <button className='highscore-btn'>Leben: {highscore}</button>
+      <div className='top'>
+        <h1 className='header'>
+          {gameWon || gameOver
+            ? message
+            : `Hallo ${firstname ? firstname : "..."}`}
+        </h1>
+        <h2 className='subheader'>{message ? message : "..."}</h2>
+        <input
+          required
+          autoFocus
+          placeholder='Wie heißt du?'
+          type='text'
+          onChange={handleFirstname}
+        />
+        <button className='start-btn' onClick={() => handleNewGame()}>
+          Start
+        </button>
+      </div>
+      <div className='score-wrapper'>
+        <button className='score score-btn'>Versuche: {score}</button>
+        <button className='score highscore-btn'>Leben: {highscore}</button>
       </div>
       <div className='show-wrapper'>
         <button className='show' onClick={() => showRandomNumber()}>
-          <span className='show-span'>{show ? randomNumber : "?"}</span>
+          <span className='show show-span'>{show ? randomNumber : "?"}</span>
         </button>
-        <button className='equal'>=</button>
-        <button className='show-guess-number'>{guess ? guess : "?"}</button>
+        <button className='show equal'>=</button>
+        <button className='show show-guess-number'>
+          {guess ? guess : "?"}
+        </button>
       </div>
-      <div>
-        <button className='nums' onClick={() => handleGuess(0)}>
-          0
-        </button>
+      <div className='bottom'>
+        {/* <div> */}
         <button className='nums' onClick={() => handleGuess(1)}>
           1
         </button>
@@ -156,17 +158,19 @@ export const App = () => {
         <button className='nums' onClick={() => handleGuess(3)}>
           3
         </button>
+        {/* </div> */}
+        {/* <div> */}
         <button className='nums' onClick={() => handleGuess(4)}>
           4
         </button>
-      </div>
-      <div>
         <button className='nums' onClick={() => handleGuess(5)}>
           5
         </button>
         <button className='nums' onClick={() => handleGuess(6)}>
           6
         </button>
+        {/* </div> */}
+        {/* <div> */}
         <button className='nums' onClick={() => handleGuess(7)}>
           7
         </button>
@@ -175,6 +179,10 @@ export const App = () => {
         </button>
         <button className='nums' onClick={() => handleGuess(9)}>
           9
+        </button>
+        {/* </div> */}
+        <button className='nums null' onClick={() => handleGuess(0)}>
+          0
         </button>
       </div>
     </div>
