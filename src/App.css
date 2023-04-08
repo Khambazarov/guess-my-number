@@ -1,8 +1,8 @@
 /* #root {
   /* max-width: 1280px; */
-  /* margin: 0 auto;
+/* margin: 0 auto;
   text-align: center; */
-/* } */ 
+/* } */
 
 * {
   box-sizing: border-box;
@@ -18,7 +18,7 @@ body {
 .App {
   display: flex;
   flex-direction: column;
-  height: 100dvh;
+  height: 100%;
 }
 
 .top {
@@ -37,22 +37,22 @@ h1 {
   font-size: 2rem;
   line-height: 1;
   height: 3rem;
-  margin: 2rem 1rem 0 1rem;
+  margin: 2rem 0 0.5rem 0;
   color: #ccc;
 }
 
 .subheader {
   font-size: 1.5rem;
   line-height: 1;
-  margin: 1rem;
+  margin: 0.5rem;
   color: #ccc;
 }
 
 input {
   width: 100%;
-  font-size: 2rem;
-  padding: 0.5rem;
-  margin: 2.5px;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 2px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -66,9 +66,9 @@ input[type="text"] {
 .start-btn {
   box-sizing: border-box;
   width: 100%;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 10px;
-  margin: 2.5px;
+  margin: 2px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -84,9 +84,9 @@ input[type="text"] {
 .nums {
   box-sizing: border-box;
   flex: 32%;
-  font-size: 4rem;
+  font-size: 3rem;
   padding: 10px;
-  margin: 2.5px;
+  margin: 2px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -113,9 +113,9 @@ input[type="text"] {
 .show {
   box-sizing: border-box;
   flex: 32%;
-  font-size: 4rem;
+  font-size: 3rem;
   padding: 10px;
-  margin: 2.5px;
+  margin: 2px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -132,9 +132,9 @@ input[type="text"] {
 .score {
   box-sizing: border-box;
   flex: 2;
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding: 10px;
-  margin: 2.5px;
+  margin: 2px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
