@@ -10,9 +10,12 @@ export const App = () => {
   const [gameWon, setGameWon] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [firstname, setFirstname] = useState("");
+  const [guess, setGuess] = useState("");
 
   const newRandomNumber = () => Math.floor(Math.random() * 10);
   console.log("randomNumber", randomNumber);
+
+  const showGuessNumber = (guess) => setGuess(guess);
 
   const handleFirstname = (e) => {
     setFirstname(e.target.value.toUpperCase());
@@ -27,25 +30,27 @@ export const App = () => {
 
   const handleHighscoreIncrement = () => {
     setHighscore((prev) => prev + 1);
-    setMessage(`SUPER ${firstname}, weiter so!`);
+    setMessage(`SUPER ${firstname && firstname}`);
     setRandomNumber(newRandomNumber());
   };
 
   const handleScoreDecrement = () => {
     setScore((prev) => prev - 1);
-    setMessage(`Du schafst es ${firstname}, versuch es noch einmal!`);
+    setMessage(`Du schafst es ${firstname && firstname}`);
   };
 
   const handleHighscoreDecrement = () => {
     setScore(3);
     setHighscore((prev) => prev - 1);
-    setMessage(`Du schafst es ${firstname}, versuch es noch einmal!`);
+    setMessage(`Du schafst es ${firstname && firstname}`);
   };
 
   const handleGameOver = () => {
     setScore(0);
     setGameOver(true);
-    setMessage(`${firstname}, du hast leider verloren!`);
+    setMessage(
+      `${firstname ? firstname + " hat verloren!" : "Du hast verloren"}`
+    );
     showRandomNumber();
     setTimeout(() => {
       setRandomNumber("?");
@@ -55,21 +60,42 @@ export const App = () => {
   const handleGameWon = () => {
     setHighscore(3);
     setGameWon(true);
-    setMessage(`SUPER ${firstname}, du hast gewonnen!!`);
+    setMessage(
+      `${firstname ? firstname + " hat gewonnen!" : "Du hast gewonnen"}`
+    );
+  };
+
+  const handleScoreTooHighMessage = () => {
+    setScore((prev) => prev - 1);
+    setMessage(`Zu hoch ${firstname && firstname}`);
+  };
+
+  const handleScoreTooLowMessage = () => {
+    setScore((prev) => prev - 1);
+    setMessage(`Zu niedrig ${firstname && firstname}`);
   };
 
   const handleGuess = (guess) => {
-    guess === randomNumber && score !== 0 && highscore < 2
+    showGuessNumber(guess);
+    randomNumber !== "?" &&
+    guess === randomNumber &&
+    score !== 0 &&
+    highscore < 2
       ? handleHighscoreIncrement()
-      : randomNumber !== "?" && guess !== randomNumber && score > 1
-      ? handleScoreDecrement()
-      : guess !== randomNumber && score === 1 && highscore > 0
-      ? handleHighscoreDecrement()
-      : guess !== randomNumber && score <= 1 && highscore < 1
+      : (guess !== randomNumber && score === 0 && highscore === 0) ||
+        (guess === randomNumber && score === 0 && highscore === 0)
       ? handleGameOver()
-      : guess === randomNumber && score !== 0 && highscore === 2
+      : guess < randomNumber && score !== 0 && highscore >= 0
+      ? handleScoreTooLowMessage()
+      : guess > randomNumber && score !== 0 && highscore >= 0
+      ? handleScoreTooHighMessage()
+      : randomNumber !== "?" && guess !== randomNumber && score !== 0
+      ? handleScoreDecrement()
+      : guess !== randomNumber && score === 0 && highscore > 0
+      ? handleHighscoreDecrement()
+      : guess === randomNumber && score !== 0 && highscore >= 2
       ? handleGameWon()
-      : setMessage(`${firstname}, tippe auf 'Start' und lege los!`);
+      : setMessage(`${firstname}, tippe auf 'Start'!`);
   };
 
   const handleNewGame = () => {
@@ -80,42 +106,76 @@ export const App = () => {
     setGameOver(false);
     setGameWon(false);
     setRandomNumber(newRandomNumber());
+    inputReset();
+  };
+
+  const inputReset = () => {
+    const input = document.querySelector("input");
+    input.value = "";
   };
 
   return (
     <div className='App'>
       <h1 className='header'>
-        {message ? message : `${firstname}, errate die Zahl zwischen 0 und 9`}
+        {gameWon || gameOver
+          ? message
+          : `Hallo ${firstname ? firstname : "..."}`}
       </h1>
+      <h2 className='subheader'>{message ? message : "..."}</h2>
       <input
+        required
         autoFocus
         placeholder='Wie heißt du?'
         type='text'
         onChange={handleFirstname}
       />
-      <button onClick={() => handleNewGame()}>Start</button>
+      <button className='start-btn' onClick={() => handleNewGame()}>
+        Start
+      </button>
       <div>
-        <button>Score: {score}</button>
-        <button>Highscore: {highscore}</button>
+        <button className='score-btn'>Versuche: {score}</button>
+        <button className='highscore-btn'>Leben: {highscore}</button>
       </div>
-      <div>
+      <div className='show-wrapper'>
         <button className='show' onClick={() => showRandomNumber()}>
           <span className='show-span'>{show ? randomNumber : "?"}</span>
         </button>
+        <button className='equal'>=</button>
+        <button className='show-guess-number'>{guess ? guess : "?"}</button>
       </div>
       <div>
-        <button onClick={() => handleGuess(0)}>0</button>
-        <button onClick={() => handleGuess(1)}>1</button>
-        <button onClick={() => handleGuess(2)}>2</button>
-        <button onClick={() => handleGuess(3)}>3</button>
-        <button onClick={() => handleGuess(4)}>4</button>
+        <button className='nums' onClick={() => handleGuess(0)}>
+          0
+        </button>
+        <button className='nums' onClick={() => handleGuess(1)}>
+          1
+        </button>
+        <button className='nums' onClick={() => handleGuess(2)}>
+          2
+        </button>
+        <button className='nums' onClick={() => handleGuess(3)}>
+          3
+        </button>
+        <button className='nums' onClick={() => handleGuess(4)}>
+          4
+        </button>
       </div>
       <div>
-        <button onClick={() => handleGuess(5)}>5</button>
-        <button onClick={() => handleGuess(6)}>6</button>
-        <button onClick={() => handleGuess(7)}>7</button>
-        <button onClick={() => handleGuess(8)}>8</button>
-        <button onClick={() => handleGuess(9)}>9</button>
+        <button className='nums' onClick={() => handleGuess(5)}>
+          5
+        </button>
+        <button className='nums' onClick={() => handleGuess(6)}>
+          6
+        </button>
+        <button className='nums' onClick={() => handleGuess(7)}>
+          7
+        </button>
+        <button className='nums' onClick={() => handleGuess(8)}>
+          8
+        </button>
+        <button className='nums' onClick={() => handleGuess(9)}>
+          9
+        </button>
       </div>
     </div>
   );

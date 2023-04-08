@@ -1,15 +1,35 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-h1 {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: #000;
+}
+
+/* h1 {
   font-size: 2rem;
-  line-height: 1;
+  line-height: 1 ;
   height: 3rem;
-  margin: 1rem 0 4rem 0;
+  margin: 4rem 1rem;
+  color: #ccc;
+} */
+
+.subheader {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 1rem;
+  color: #ccc;
 }
 
 input {
@@ -20,46 +40,83 @@ input {
   border-radius: 4px;
 }
 
-button {
+input[type="text"] {
+  color: #000;
+  background-color: #ccc;
+}
+
+.start-btn {
   font-size: 1.5rem;
   padding: 0.5rem 1rem;
-  margin: 0.3rem;
-  border: 1px solid #ccc;
+  margin: 0.5rem;
+  border: none;
   border-radius: 4px;
-  background-color: #f9f9f9;
+  background-color: #646cff;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: #ccc;
 }
 
-button:hover {
-  border-color: #646cff;
+.start-btn:hover {
+  border: 1px solid #646cff;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.nums {
+  font-size: 1.5rem;
+  padding: 18.075px 25px;
+  margin: 2px;
+  border: none;
+  border-radius: 4px;
+  background-color: firebrick;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: #ccc;
 }
 
-@keyframes guess-number-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nums:focus,
+.nums:focus-visible {
+  background-color: #646cff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .show {
-    animation: guess-number-spin infinite 5s linear;
-  }
+.show-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
 }
 
 .show {
+  margin: 1rem 3rem 1rem 0;
   margin: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
+  padding: 10px 24.25px;
+  border-radius: 20px;
+  border: none;
+  background-color: #646cff;
+  width: fit-content;
 }
 
 .show-span {
   font-size: 3rem;
+  color: #ccc;
+}
+
+.equal {
+  font-size: 5rem;
+  margin: 1rem 2rem;
+  color: #ccc;
+  background-color: #000;
+  border: none;
+}
+
+.show-guess-number {
+  font-size: 3rem;
+  margin: 1rem;
+  padding: 10px 24.25px;
+  border-radius: 20px;
+  /* padding: 18.075px 25px; */
+  color: #ccc;
+  background-color: firebrick;
+  border: none;
 }
