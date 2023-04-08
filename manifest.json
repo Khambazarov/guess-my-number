@@ -1,7 +1,7 @@
 {
-  "name": "Guess my number",
-  "short_name": "Guess my number",
-  "theme_color": "#555",
+  "name": "Guess the number",
+  "short_name": "guessing",
+  "theme_color": "#fff",
   "background_color": "#000",
   "display": "fullScreen",
   "orientation": "portrait",
