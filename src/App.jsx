@@ -100,7 +100,7 @@ export const App = () => {
       </div>
       <div>
         <button className='show' onClick={() => showRandomNumber()}>
-          {show ? randomNumber : "?"}
+          <span className='show-span'>{show ? randomNumber : "?"}</span>
         </button>
       </div>
       <div>

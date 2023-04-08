@@ -57,5 +57,9 @@ button:focus-visible {
 
 .show {
   margin: 1rem;
-  padding: 1rem 1.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.show-span {
+  font-size: 3rem;
 }
