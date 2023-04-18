@@ -35,6 +35,17 @@ body {
   color: #ccc;
 }
 
+/* .input-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 5px;
+}
+
+.reset-btn {
+  border: none;
+  margin-left: 1.68px;
+} */
+
 .input-firstname {
   width: 100%;
   font-size: 2rem;
@@ -50,19 +61,23 @@ body {
 
 .score-wrapper {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 5px;
   margin: 5px 0 0 0;
 }
 
 .score {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  padding: 10px;
+  padding: 24.4px 0;
   border: none;
   cursor: default;
   background-color: purple;
   color: #ccc;
+}
+
+.reset-btn {
+  font-size: 2rem;
 }
 
 .number-pad {

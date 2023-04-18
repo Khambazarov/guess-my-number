@@ -112,6 +112,17 @@ export const App = () => {
     inputReset();
   };
 
+  const handleReset = () => {
+    setShow(false);
+    setScore(3);
+    setHighscore(0);
+    setMessage("");
+    setGameOver(false);
+    setGameWon(false);
+    setRandomNumber(newRandomNumber());
+    setFirstname("");
+  };
+
   const inputReset = () => {
     const input = document.querySelector("input");
     input.value = "";
@@ -119,11 +130,10 @@ export const App = () => {
 
   return (
     <div className='App'>
-      <div>
-        <h1 className='header-firstname'>
-          {firstname ? firstname : "Zahlenrätsel"}
-        </h1>
-        <h2 className='header-message'>{message}</h2>
+      <h1 className='header-firstname'>
+        {firstname ? firstname : "Zahlenrätsel"}
+      </h1>
+      <h2 className='header-message'>{message}</h2>
         <input
           className='input-firstname'
           required
@@ -132,7 +142,6 @@ export const App = () => {
           type='text'
           onChange={handleFirstname}
         />
-      </div>
       <div className='score-wrapper'>
         <button className='score'>
           {score === 1 ? "Score" : "Scores"}
@@ -142,6 +151,7 @@ export const App = () => {
           {highscore === 1 ? "Highscore" : "Highscores"}
           <div>{highscore}</div>
         </button>
+        <button className='reset-btn score' onClick={() => handleReset()}>RESET</button>
       </div>
       <div className='number-pad'>
         <button className='nums' onClick={() => handleGuessingNumber(1)}>
