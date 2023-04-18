@@ -118,7 +118,7 @@ export const App = () => {
   };
 
   return (
-    <div className='App'> 
+    <div className='App'>
       <div>
         <h1 className='header-firstname'>
           {firstname ? firstname : "Guess the number"}
@@ -172,7 +172,7 @@ export const App = () => {
           9
         </button>
         <button className='show' onClick={() => showRandomNumber()}>
-          <span className='show'>{show ? randomNumber : "?"}</span>
+          {show ? randomNumber : "?"}
         </button>
         <button className='nums' onClick={() => handleGuessingNumber(0)}>
           0

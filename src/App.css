@@ -82,17 +82,28 @@ body {
   color: #ccc;
 }
 
-.nums:is(:focus, :focus-visible, :hover) {
-  background-color: #646cff;
+.nums:is(:focus, :focus-visible, :active, :hover) {
+  color: firebrick;
+  background: #000;
 }
 
 .show,
 .go {
   font-size: 4rem;
   font-weight: bold;
-  padding: 10px;
+  /* padding: 10px; */
   border: none;
   cursor: pointer;
   background-color: #646cff;
   color: #ccc;
+}
+
+.show:is(:focus, :focus-visible, :active, :hover) {
+  background-color: #000;
+  color: #646cff;
+}
+
+.go:is(:focus, :focus-visible, :active, :hover) {
+  background-color: #000;
+  color: #646cff;
 }
