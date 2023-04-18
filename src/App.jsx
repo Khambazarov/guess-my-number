@@ -121,7 +121,7 @@ export const App = () => {
     <div className='App'>
       <div>
         <h1 className='header-firstname'>
-          {firstname ? firstname : "Guess the number"}
+          {firstname ? firstname : "Zahlenrätsel"}
         </h1>
         <h2 className='header-message'>{message}</h2>
         <input
