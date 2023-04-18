@@ -128,7 +128,7 @@ export const App = () => {
           className='input-firstname'
           required
           autoFocus
-          placeholder='Wie heißt du?'
+          placeholder={firstname ? "" : "Wie heißt du?"}
           type='text'
           onChange={handleFirstname}
         />
