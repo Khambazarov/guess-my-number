@@ -82,13 +82,12 @@ body {
   color: #ccc;
 }
 
-.nums:focus,
-.nums:focus-visible,
-.go {
+.nums:is(:focus, :focus-visible, :hover) {
   background-color: #646cff;
 }
 
-.show {
+.show,
+.go {
   font-size: 4rem;
   font-weight: bold;
   padding: 10px;

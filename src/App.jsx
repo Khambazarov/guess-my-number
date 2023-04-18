@@ -118,7 +118,7 @@ export const App = () => {
   };
 
   return (
-    <div className='App'>
+    <div className='App'> 
       <div>
         <h1 className='header-firstname'>
           {firstname ? firstname : "Guess the number"}
