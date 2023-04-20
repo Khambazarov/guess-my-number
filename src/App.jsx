@@ -78,6 +78,7 @@ export const App = () => {
   };
 
   const handleGuessingNumber = (guess) => {
+    inputReset();
     showGuessNumber(guess);
     randomNumber !== "?" &&
     guess === randomNumber &&
@@ -134,24 +135,26 @@ export const App = () => {
         {firstname ? firstname : "Zahlenrätsel"}
       </h1>
       <h2 className='header-message'>{message}</h2>
-        <input
-          className='input-firstname'
-          required
-          autoFocus
-          placeholder={firstname ? "" : "Wie heißt du?"}
-          type='text'
-          onChange={handleFirstname}
-        />
+      <input
+        className='input-firstname'
+        required
+        autoFocus
+        placeholder={firstname ? "" : "Wie heißt du?"}
+        type='text'
+        onChange={handleFirstname}
+      />
       <div className='score-wrapper'>
         <button className='score'>
           {score === 1 ? "Score" : "Scores"}
-          <div>{score}</div>
+          <div className='score-value'>{score}</div>
         </button>
         <button className='score'>
           {highscore === 1 ? "Highscore" : "Highscores"}
-          <div>{highscore}</div>
+          <div className='score-value'>{highscore}</div>
         </button>
-        <button className='reset-btn score' onClick={() => handleReset()}>RESET</button>
+        <button className='reset-btn score' onClick={() => handleReset()}>
+          RESET
+        </button>
       </div>
       <div className='number-pad'>
         <button className='nums' onClick={() => handleGuessingNumber(1)}>

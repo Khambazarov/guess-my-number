@@ -5,25 +5,60 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  height: 100dvh;
   background-color: #000;
+  font-family: "Roboto", sans-serif;
 }
 
 .App {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  width: clamp(200px, 100dvw, 1000px);
-  height: clamp(400px, 100dvh, 1200px);
+  width: clamp(300px, 100dvw, 1200px);
+  height: clamp(600px, 100dvh, 1200px);
   margin: 0 auto;
 }
 
 .header-firstname {
   display: grid;
   place-items: center;
-  font-size: 2rem;
+  font-size: 3rem;
   height: 3rem;
   color: #ccc;
+  background: linear-gradient(
+    to left,
+    #fff 0%,
+    #00f 5%,
+    #0f0 10%,
+    #f00 15%,
+    #0ff 20%,
+    #f0f 25%,
+    #ff0 30%,
+    #00f 35%,
+    #0f0 40%,
+    #f00 45%,
+    #0ff 50%,
+    #f0f 55%,
+    #ff0 60%,
+    #00f 65%,
+    #0f0 70%,
+    #f00 75%,
+    #0ff 80%,
+    #f0f 85%,
+    #ff0 90%,
+    #000 95%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 8s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: -200% center;
+  }
 }
 
 .header-message {
@@ -35,26 +70,15 @@ body {
   color: #ccc;
 }
 
-/* .input-wrapper {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 5px;
-}
-
-.reset-btn {
-  border: none;
-  margin-left: 1.68px;
-} */
-
 .input-firstname {
   width: 100%;
   font-size: 2rem;
+  margin-top: 1rem;
   padding: 1rem 0;
   outline: none;
   border: none;
-  box-shadow: inset 0 0 20px 2px #f0f;
+  border-top: 3px solid #ccc;
   text-align: center;
-  caret-color: #f0f;
   color: #ccc;
   background-color: #000;
 }
@@ -70,6 +94,15 @@ body {
   font-size: 1.2rem;
   font-weight: bold;
   padding: 24.4px 0;
+  border: none;
+  cursor: default;
+  background-color: purple;
+  color: #ccc;
+}
+
+.score-value {
+  font-size: 1.2rem;
+  font-weight: bold;
   border: none;
   cursor: default;
   background-color: purple;
@@ -102,20 +135,35 @@ body {
   background: #000;
 }
 
-.show,
-.go {
+.show {
   font-size: 4rem;
   font-weight: bold;
-  /* padding: 10px; */
   border: none;
   cursor: pointer;
   background-color: #646cff;
   color: #ccc;
+  animation: show 5s ease-in-out infinite;
 }
 
-.show:is(:focus, :focus-visible, :active, :hover) {
-  background-color: #000;
-  color: #646cff;
+@keyframes show {
+  0%, 100% {
+    background-color: #646cff;
+    color: #ccc;
+  }
+  50% {
+    background-color: #000;
+    color: #ccc;
+  }
+}
+
+
+.go {
+  font-size: 4rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  background-color: #646cff;
+  color: #ccc;
 }
 
 .go:is(:focus, :focus-visible, :active, :hover) {
