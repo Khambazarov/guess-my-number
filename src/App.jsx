@@ -5,127 +5,79 @@ export const App = () => {
   const [randomNumber, setRandomNumber] = useState("?");
   const [show, setShow] = useState(false);
   const [score, setScore] = useState(3);
-  const [highscore, setHighscore] = useState(0);
   const [message, setMessage] = useState("");
-  const [gameWon, setGameWon] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
   const [firstname, setFirstname] = useState("");
-  const [guess, setGuess] = useState("");
 
   const newRandomNumber = () => Math.floor(Math.random() * 10);
-
-  const showGuessNumber = (guess) => setGuess(guess);
 
   const handleFirstname = (e) => {
     setFirstname(e.target.value.toUpperCase());
   };
 
   const showRandomNumber = () => {
-    setShow(true);
+    setShow(!show);
     setTimeout(() => {
-      setShow(false);
+      setShow(show);
     }, 1000);
-  };
-
-  const handleHighscoreIncrement = () => {
-    setHighscore((prev) => prev + 1);
-    setMessage("SUPER, weiter so...");
-    setRandomNumber(newRandomNumber());
-    // setMessage(firstname ? `SUPER ${firstname}` : "SUPER");
-  };
-
-  const handleScoreDecrement = () => {
-    setScore((prev) => prev - 1);
-    setMessage("Du schafst es...");
-    // setMessage(firstname ? `Du schafst es ${firstname}` : "Du schafst es");
-  };
-
-  const handleHighscoreDecrement = () => {
-    setScore(3);
-    setHighscore((prev) => prev - 1);
-    setMessage("Du schafst es...");
-    // setMessage(firstname ? `Du schafst es ${firstname}` : "Du schafst es");
   };
 
   const handleGameOver = () => {
     setScore(0);
-    setGameOver(true);
     showRandomNumber();
     setMessage("Du hast verloren");
-    // setMessage(firstname ? `${firstname} hat verloren!` : "Du hast verloren");
     setTimeout(() => {
       setRandomNumber("?");
-    }, 3000);
+    }, 2000);
   };
 
   const handleGameWon = () => {
-    setHighscore(3);
-    setGameWon(true);
-    setMessage("Du hast gewonnen");
-    // setMessage(firstname ? `${firstname} hat gewonnen!` : "Du hast gewonnen");
+    setScore((prev) => prev + 1);
+    setMessage("Richtig, weiter so...");
+    setRandomNumber(newRandomNumber());
   };
 
-  const handleScoreTooHighMessage = () => {
+  const handleScoreTooHigh = () => {
     setScore((prev) => prev - 1);
     setMessage("Zu hoch");
-    // setMessage(firstname ? `Zu hoch ${firstname}` : "Zu hoch");
   };
 
-  const handleScoreTooLowMessage = () => {
+  const handleScoreTooLow = () => {
     setScore((prev) => prev - 1);
     setMessage("Zu niedrig");
-    // setMessage(firstname ? `Zu niedrig ${firstname}` : "Zu niedrig");
   };
 
   const handleGuessingNumber = (guess) => {
-    inputReset();
-    showGuessNumber(guess);
-    randomNumber !== "?" &&
-    guess === randomNumber &&
-    score !== 0 &&
-    highscore < 2
-      ? handleHighscoreIncrement()
-      : (guess !== randomNumber && score === 0 && highscore === 0) ||
-        (guess === randomNumber && score === 0 && highscore === 0)
+    handleInput();
+    guess !== randomNumber && score <= 1
       ? handleGameOver()
-      : guess < randomNumber && score !== 0 && highscore >= 0
-      ? handleScoreTooLowMessage()
-      : guess > randomNumber && score !== 0 && highscore >= 0
-      ? handleScoreTooHighMessage()
-      : randomNumber !== "?" && guess !== randomNumber && score !== 0
-      ? handleScoreDecrement()
-      : guess !== randomNumber && score === 0 && highscore > 0
-      ? handleHighscoreDecrement()
-      : guess === randomNumber && score !== 0 && highscore >= 2
+      : guess < randomNumber
+      ? handleScoreTooLow()
+      : guess > randomNumber
+      ? handleScoreTooHigh()
+      : guess === randomNumber && score >= 1
       ? handleGameWon()
       : setMessage("Tippe auf Start");
-    // : setMessage(firstname ? `${firstname}, tippe auf Start` : `Tippe auf Start`);
   };
 
   const handleNewGame = () => {
-    setShow(false);
+    setShow(show);
     setScore(3);
-    setHighscore(0);
     setMessage("");
-    setGameOver(false);
-    setGameWon(false);
+    handleInput();
     setRandomNumber(newRandomNumber());
-    inputReset();
   };
 
   const handleReset = () => {
-    setShow(false);
+    setShow(show);
     setScore(3);
-    setHighscore(0);
     setMessage("");
-    setGameOver(false);
-    setGameWon(false);
-    setRandomNumber(newRandomNumber());
+    handleInput();
+    setRandomNumber("?");
     setFirstname("");
   };
 
-  const inputReset = () => {
-    const input = document.querySelector("input");
+  const handleInput = () => {
+    const input = document.querySelector(".input-firstname");
     input.value = "";
   };
 
@@ -144,16 +96,12 @@ export const App = () => {
         onChange={handleFirstname}
       />
       <div className='score-wrapper'>
-        <button className='score'>
+        <button className='score-btn text'>
           {score === 1 ? "Score" : "Scores"}
-          <div className='score-value'>{score}</div>
         </button>
-        <button className='score'>
-          {highscore === 1 ? "Highscore" : "Highscores"}
-          <div className='score-value'>{highscore}</div>
-        </button>
-        <button className='reset-btn score' onClick={() => handleReset()}>
-          RESET
+        <button className='score-btn score'>{score}</button>
+        <button className='show' onClick={() => showRandomNumber()}>
+          {show ? randomNumber : "?"}
         </button>
       </div>
       <div className='number-pad'>
@@ -184,8 +132,8 @@ export const App = () => {
         <button className='nums' onClick={() => handleGuessingNumber(9)}>
           9
         </button>
-        <button className='show' onClick={() => showRandomNumber()}>
-          {show ? randomNumber : "?"}
+        <button className='reset-btn' onClick={() => handleReset()}>
+          RESET
         </button>
         <button className='nums' onClick={() => handleGuessingNumber(0)}>
           0
