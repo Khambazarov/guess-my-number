@@ -64,7 +64,7 @@ body {
 .header-message {
   display: grid;
   place-items: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   height: 3rem;
   margin: 1rem 0;
   color: #ccc;
