@@ -4,7 +4,7 @@ import "./App.css";
 export const App = () => {
   const [randomNumber, setRandomNumber] = useState("?");
   const [show, setShow] = useState(false);
-  const [score, setScore] = useState(3);
+  const [score, setScore] = useState(5);
   const [message, setMessage] = useState("");
   const [firstname, setFirstname] = useState("");
 
@@ -24,7 +24,7 @@ export const App = () => {
   const handleGameOver = () => {
     setScore(0);
     showRandomNumber();
-    setMessage("Ухэнащ");
+    setMessage("Цlэпlэжь ухэнащ!");
     // setMessage("Du hast verloren");
     setTimeout(() => {
       setRandomNumber("?");
@@ -33,20 +33,29 @@ export const App = () => {
 
   const handleGameWon = () => {
     setScore((prev) => prev + 1);
-    setMessage("Пэжщ, кlуэцlыуэ уэ...");
+    setMessage("☻ Пэжщ кlуэцlыуэ уэ!");
     // setMessage("Richtig, weiter so...");
     setRandomNumber(newRandomNumber());
   };
 
+  const handleEndGame = () => {
+    setScore(10);
+    setMessage("☻ Маржэ УЕЙ УЕЙ!");
+    // showRandomNumber();
+    // setTimeout(() => {
+      setRandomNumber("?");
+    // }, 5000);
+  };
+
   const handleScoreTooHigh = () => {
     setScore((prev) => prev - 1);
-    setMessage("Лъэгэlуэщ");
+    setMessage("↓↓↓ Лъэгэlуэщ ↓↓↓");
     // setMessage("Zu hoch");
   };
 
   const handleScoreTooLow = () => {
     setScore((prev) => prev - 1);
-    setMessage("Лъэхъшэlуэщ");
+    setMessage("↑↑↑ Лъэхъшэlуэщ ↑↑↑");
     // setMessage("Zu niedrig");
   };
 
@@ -58,15 +67,18 @@ export const App = () => {
       ? handleScoreTooLow()
       : guess > randomNumber
       ? handleScoreTooHigh()
+      : guess === randomNumber && score >= 9
+      ? handleEndGame()
       : guess === randomNumber && score >= 1
       ? handleGameWon()
-      : setMessage("Стартым текъузэ");
-      // : setMessage("Tippe auf Start");
+      : setMessage("Щlэдзэм текъузэ");
+    // : setMessage("Илъабжьэм ижьырабгъумкэ текъузэ");
+    // : setMessage("Tippe auf Start");
   };
 
   const handleNewGame = () => {
     setShow(show);
-    setScore(3);
+    setScore(5);
     setMessage("");
     handleInput();
     setRandomNumber(newRandomNumber());
@@ -74,7 +86,7 @@ export const App = () => {
 
   const handleReset = () => {
     setShow(show);
-    setScore(3);
+    setScore(5);
     setMessage("");
     handleInput();
     setRandomNumber("?");
@@ -89,7 +101,7 @@ export const App = () => {
   return (
     <div className='App'>
       <h1 className='header-firstname'>
-        {firstname ? firstname : "Къащlэ къэщlэрей"}
+        {firstname ? firstname : "Къащlэ бжыгъэр"}
         {/* {firstname ? firstname : "Zahlenrätsel"} */}
       </h1>
       <h2 className='header-message'>{message}</h2>
@@ -97,18 +109,20 @@ export const App = () => {
         className='input-firstname'
         required
         autoFocus
-        placeholder={firstname ? "" : "Уицlэр тхы"}
+        placeholder={firstname ? "" : "Уицlэр хэт?"}
         // placeholder={firstname ? "" : "Wie heißt du?"}
         type='text'
         onChange={handleFirstname}
       />
       <div className='score-wrapper'>
         <button className='score-btn text'>
-          {score === 1 ? "Score" : "Scores"}
+          {score && "Псэ бжыгъэ"}
+          {/* {score === 1 ? "Score" : "Scores"} */}
         </button>
         <button className='score-btn score'>{score}</button>
         <button className='show' onClick={() => showRandomNumber()}>
-          {show ? randomNumber : "?"}
+          {show ? randomNumber : "Сыт бжыгъэ сгъэпщкlур?"}
+          {/* {show ? randomNumber : "?"} */}
         </button>
       </div>
       <div className='number-pad'>
@@ -140,13 +154,13 @@ export const App = () => {
           9
         </button>
         <button className='reset-btn' onClick={() => handleReset()}>
-          Щlэдзэж
+          Псори хъуэж
         </button>
         <button className='nums' onClick={() => handleGuessingNumber(0)}>
           0
         </button>
         <button className='nums go' onClick={() => handleNewGame()}>
-          Джэгу
+          Щlэдзэ
         </button>
       </div>
     </div>

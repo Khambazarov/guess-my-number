@@ -22,7 +22,7 @@ body {
 .header-firstname {
   display: grid;
   place-items: center;
-  font-size: 3rem;
+  font-size: 2rem;
   height: 3rem;
   color: #ccc;
   background: linear-gradient(
@@ -94,7 +94,7 @@ body {
   border: none;
   background-color: purple;
   color: #ccc;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
@@ -103,7 +103,7 @@ body {
 }
 
 .reset-btn {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   border: none;
   cursor: pointer;
@@ -139,7 +139,7 @@ body {
 }
 
 .show {
-  font-size: 4rem;
+  font-size: 1rem;
   font-weight: bold;
   border: none;
   cursor: pointer;
@@ -161,7 +161,7 @@ body {
 }
 
 .go {
-  font-size: 4rem;
+  font-size: 1.5rem;
   font-weight: bold;
   border: none;
   cursor: pointer;
