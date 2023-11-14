@@ -42,9 +42,9 @@ export const App = () => {
     setScore(10);
     setMessage("☻ Маржэ УЕЙ УЕЙ!");
     // showRandomNumber();
-    // setTimeout(() => {
+    setTimeout(() => {
       setRandomNumber("?");
-    // }, 5000);
+    }, 5000);
   };
 
   const handleScoreTooHigh = () => {
@@ -71,8 +71,8 @@ export const App = () => {
       ? handleEndGame()
       : guess === randomNumber && score >= 1
       ? handleGameWon()
-      : setMessage("Щlэдзэм текъузэ");
-    // : setMessage("Илъабжьэм ижьырабгъумкэ текъузэ");
+      : setMessage("Щlэрыщlу щlэдзэж");
+      // : setMessage("Щlэдзэм текъузэ");
     // : setMessage("Tippe auf Start");
   };
 
@@ -154,7 +154,7 @@ export const App = () => {
           9
         </button>
         <button className='reset-btn' onClick={() => handleReset()}>
-          Псори хъуэж
+          Щlэрыщlу джэгу
         </button>
         <button className='nums' onClick={() => handleGuessingNumber(0)}>
           0
