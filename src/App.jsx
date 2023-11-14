@@ -24,7 +24,8 @@ export const App = () => {
   const handleGameOver = () => {
     setScore(0);
     showRandomNumber();
-    setMessage("Du hast verloren");
+    setMessage("Ухэнащ");
+    // setMessage("Du hast verloren");
     setTimeout(() => {
       setRandomNumber("?");
     }, 2000);
@@ -32,18 +33,21 @@ export const App = () => {
 
   const handleGameWon = () => {
     setScore((prev) => prev + 1);
-    setMessage("Richtig, weiter so...");
+    setMessage("Пэжщ, кlуэцlыуэ уэ...");
+    // setMessage("Richtig, weiter so...");
     setRandomNumber(newRandomNumber());
   };
 
   const handleScoreTooHigh = () => {
     setScore((prev) => prev - 1);
-    setMessage("Zu hoch");
+    setMessage("Лъэгэlуэщ");
+    // setMessage("Zu hoch");
   };
 
   const handleScoreTooLow = () => {
     setScore((prev) => prev - 1);
-    setMessage("Zu niedrig");
+    setMessage("Лъэхъшэlуэщ");
+    // setMessage("Zu niedrig");
   };
 
   const handleGuessingNumber = (guess) => {
@@ -56,7 +60,8 @@ export const App = () => {
       ? handleScoreTooHigh()
       : guess === randomNumber && score >= 1
       ? handleGameWon()
-      : setMessage("Tippe auf Start");
+      : setMessage("Стартым текъузэ");
+      // : setMessage("Tippe auf Start");
   };
 
   const handleNewGame = () => {
@@ -84,14 +89,16 @@ export const App = () => {
   return (
     <div className='App'>
       <h1 className='header-firstname'>
-        {firstname ? firstname : "Zahlenrätsel"}
+        {firstname ? firstname : "Къащlэ къэщlэрей"}
+        {/* {firstname ? firstname : "Zahlenrätsel"} */}
       </h1>
       <h2 className='header-message'>{message}</h2>
       <input
         className='input-firstname'
         required
         autoFocus
-        placeholder={firstname ? "" : "Wie heißt du?"}
+        placeholder={firstname ? "" : "Уицlэр тхы"}
+        // placeholder={firstname ? "" : "Wie heißt du?"}
         type='text'
         onChange={handleFirstname}
       />
@@ -133,13 +140,13 @@ export const App = () => {
           9
         </button>
         <button className='reset-btn' onClick={() => handleReset()}>
-          RESET
+          Щlэдзэж
         </button>
         <button className='nums' onClick={() => handleGuessingNumber(0)}>
           0
         </button>
         <button className='nums go' onClick={() => handleNewGame()}>
-          GO
+          Джэгу
         </button>
       </div>
     </div>
