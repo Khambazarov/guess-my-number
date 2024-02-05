@@ -24,8 +24,8 @@ export const App = () => {
   const handleGameOver = () => {
     setScore(0);
     showRandomNumber();
-    setMessage("Цlэпlэжь ухэнащ!");
-    // setMessage("Du hast verloren");
+    // setMessage("Цlэпlэжь ухэнащ!");
+    setMessage("Du hast verloren");
     setTimeout(() => {
       setRandomNumber("?");
     }, 2000);
@@ -33,14 +33,15 @@ export const App = () => {
 
   const handleGameWon = () => {
     setScore((prev) => prev + 1);
-    setMessage("☻ Пэжщ кlуэцlыуэ уэ!");
-    // setMessage("Richtig, weiter so...");
+    // setMessage("☻ Пэжщ кlуэцlыуэ уэ!");
+    setMessage("Richtig, weiter so...");
     setRandomNumber(newRandomNumber());
   };
 
   const handleEndGame = () => {
     setScore(10);
-    setMessage("☻ Маржэ УЕЙ УЕЙ!");
+    setMessage("☻ GEWONNEN!");
+    // setMessage("☻ Маржэ УЕЙ УЕЙ!");
     // showRandomNumber();
     setTimeout(() => {
       setRandomNumber("?");
@@ -49,14 +50,14 @@ export const App = () => {
 
   const handleScoreTooHigh = () => {
     setScore((prev) => prev - 1);
-    setMessage("↓↓↓ Лъэгэlуэщ ↓↓↓");
-    // setMessage("Zu hoch");
+    // setMessage("↓↓↓ Лъэгэlуэщ ↓↓↓");
+    setMessage("Zu hoch");
   };
 
   const handleScoreTooLow = () => {
     setScore((prev) => prev - 1);
-    setMessage("↑↑↑ Лъэхъшэlуэщ ↑↑↑");
-    // setMessage("Zu niedrig");
+    // setMessage("↑↑↑ Лъэхъшэlуэщ ↑↑↑");
+    setMessage("Zu niedrig");
   };
 
   const handleGuessingNumber = (guess) => {
@@ -71,9 +72,9 @@ export const App = () => {
       ? handleEndGame()
       : guess === randomNumber && score >= 1
       ? handleGameWon()
-      : setMessage("Щlэрыщlу щlэдзэж");
-      // : setMessage("Щlэдзэм текъузэ");
-    // : setMessage("Tippe auf Start");
+      : setMessage(`Name eingeben und "GO"`);
+    // : setMessage("Щlэрыщlу щlэдзэж");
+    // : setMessage("Щlэдзэм текъузэ");
   };
 
   const handleNewGame = () => {
@@ -101,28 +102,28 @@ export const App = () => {
   return (
     <div className='App'>
       <h1 className='header-firstname'>
-        {firstname ? firstname : "Къащlэ бжыгъэр"}
-        {/* {firstname ? firstname : "Zahlenrätsel"} */}
+        {/* {firstname ? firstname : "Къащlэ бжыгъэр"} */}
+        {firstname ? firstname : "Zahlenrätsel"}
       </h1>
       <h2 className='header-message'>{message}</h2>
       <input
         className='input-firstname'
         required
         autoFocus
-        placeholder={firstname ? "" : "Уицlэр хэт?"}
-        // placeholder={firstname ? "" : "Wie heißt du?"}
+        // placeholder={firstname ? "" : "Уицlэр хэт?"}
+        placeholder={firstname ? "" : "Wie heißt du?"}
         type='text'
         onChange={handleFirstname}
       />
       <div className='score-wrapper'>
-        <button className='score-btn text'>
-          {score && "Псэ бжыгъэ"}
-          {/* {score === 1 ? "Score" : "Scores"} */}
+        <button className='score-btn text score'>
+          {/* {score && "Псэ бжыгъэ"} */}
+          {`${score} - ${score === 1 ? "Versuch" : "Versuche"}`}
         </button>
-        <button className='score-btn score'>{score}</button>
+        {/* <button className='score-btn score'>{score}</button> */}
         <button className='show' onClick={() => showRandomNumber()}>
-          {show ? randomNumber : "Сыт бжыгъэ сгъэпщкlур?"}
-          {/* {show ? randomNumber : "?"} */}
+          {/* {show ? randomNumber : "Сыт бжыгъэ сгъэпщкlур?"} */}
+          {show ? randomNumber : "?"}
         </button>
       </div>
       <div className='number-pad'>
@@ -154,13 +155,20 @@ export const App = () => {
           9
         </button>
         <button className='reset-btn' onClick={() => handleReset()}>
-          Щlэрыщlу джэгу
+          {/* Щlэрыщlу джэгу */}
+          RESET
         </button>
         <button className='nums' onClick={() => handleGuessingNumber(0)}>
           0
         </button>
-        <button className='nums go' onClick={() => handleNewGame()}>
-          Щlэдзэ
+        <button
+          className='nums go'
+          onClick={() =>
+            firstname ? handleNewGame() : setMessage("Trage deinen Namen ein")
+          }
+        >
+          {/* Щlэдзэ */}
+          GO
         </button>
       </div>
     </div>
